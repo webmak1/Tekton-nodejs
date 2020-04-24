@@ -18,6 +18,13 @@ spec:
         description: value should be like - us.icr.io/test_namespace/builtImageApp
       - name: imageTag
         description: Tag to apply to the built image
+  volumes:
+    - name: docker-config
+      secret:
+        secretName: docker-config
+        items:
+          - key: .dockerconfigjson
+            path: config.json
   steps:
     - name: list-src
       image: alpine
@@ -33,8 +40,6 @@ spec:
         - "--dockerfile=$(inputs.params.pathToDockerfile)"
         - "--destination=$(inputs.params.imageUrl):$(inputs.params.imageTag)"
         - "--context=$(inputs.resources.git-source.path)/$(inputs.params.pathToContext)/"
-        - "--insecure"
-        - "--insecure-pull"
-        - "--skip-tls-verify"
-        - "--skip-tls-verify-pull"
-
+      volumeMounts:
+        - name: docker-config
+          mountPath: /builder/home/.docker/

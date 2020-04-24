@@ -11,11 +11,13 @@ spec:
         name: git
   params:
     - name: pathToContext
-      value: "src"
+      value: "app"
     - name: pathToYamlFile
       value: "deploy.yaml"
+#    - name: "imageUrl"
+#      value: "private-docker-registry.kube-system:5000/app"
     - name: "imageUrl"
-      value: "private-docker-registry.kube-system:5000/app"
+      value: "webmakaka/app"
     - name: "imageTag"
       value: "0.0.1"
   serviceAccountName: service-account
