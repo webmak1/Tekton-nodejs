@@ -17,7 +17,7 @@ spec:
 #    - name: "imageUrl"
 #      value: "private-docker-registry.kube-system:5000/app"
     - name: "imageUrl"
-      value: "webmakaka/app"
+      value: "${MY_REGISTRY_USERNAME}/${MY_APP_NAME}"
     - name: "imageTag"
-      value: "0.0.1"
+      value: "${MY_APP_VERSION}"
   serviceAccountName: service-account

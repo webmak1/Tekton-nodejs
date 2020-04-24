@@ -34,6 +34,9 @@ spec:
         - "$(inputs.resources.git-source.path)"
     - name: build-and-push
       image: gcr.io/kaniko-project/executor
+      env:
+        - name: "DOCKER_CONFIG"
+          value: "/builder/home/.docker/"
       command:
         - /kaniko/executor
       args:
